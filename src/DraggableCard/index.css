@@ -1,0 +1,9 @@
+.DraggableCard {
+  background-color: white;
+  cursor: move;
+  opacity: 1;
+}
+
+.DraggableCard.dragging {
+  opacity: 0;
+}

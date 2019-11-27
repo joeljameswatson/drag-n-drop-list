@@ -1,16 +1,13 @@
 import React, { useRef } from "react";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
 import { XYCoord } from "dnd-core";
-
-const style = {
-  backgroundColor: "white",
-  cursor: "move"
-};
+import './index.css';
 
 export interface CardProps {
   index: number;
   moveCard: (dragIndex: number, hoverIndex: number) => void;
   type: string;
+  className?: string;
 }
 
 interface DragItem {
@@ -18,7 +15,7 @@ interface DragItem {
   id: string;
   type: string;
 }
-const DraggableCard: React.FC<CardProps> = ({ index, moveCard, children, type }) => {
+const DraggableCard: React.FC<CardProps> = ({ index, moveCard, children, type, className }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [, drop] = useDrop({
     accept: type,
@@ -79,10 +76,13 @@ const DraggableCard: React.FC<CardProps> = ({ index, moveCard, children, type })
     })
   });
 
-  const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
+
+  // if className is provided apply dragging className (no styling)
+  const classNames = `${className || 'DraggableCard'} ${isDragging ? 'dragging' : ''}`
+
   return (
-    <div ref={ref} style={{ ...style, opacity }}>
+    <div className={classNames} ref={ref}>
       {children}
     </div>
   );
