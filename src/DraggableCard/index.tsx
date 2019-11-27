@@ -1,3 +1,8 @@
+/*
+  Adapted from https://react-dnd.github.io/react-dnd/examples/sortable/simple
+  Requires DndProvider as parent https://react-dnd.github.io/react-dnd/docs/api/dnd-provider
+*/
+
 import React, { useRef } from "react";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
 import { XYCoord } from "dnd-core";
