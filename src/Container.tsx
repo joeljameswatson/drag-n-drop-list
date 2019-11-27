@@ -16,21 +16,18 @@ const Container: React.FC = () => {
   const [cards, setCards] = useState([
     {
       id: 1,
-      text: "Write a cool JS library"
+      text: "card a"
     },
     {
       id: 2,
-      text: "Make it generic enough"
+      text: "card b"
     },
     {
       id: 3,
-      text: "Write README"
-    },
-    {
-      id: 4,
-      text: "Create some examples"
+      text: "card c"
     }
   ]);
+  
 
   const moveCard = useCallback(
     (dragIndex: number, hoverIndex: number) => {
