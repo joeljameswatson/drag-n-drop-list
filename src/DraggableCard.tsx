@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
-import ItemTypes from "./ItemTypes";
 import { XYCoord } from "dnd-core";
 
 const style = {
@@ -11,6 +10,7 @@ const style = {
 export interface CardProps {
   index: number;
   moveCard: (dragIndex: number, hoverIndex: number) => void;
+  type: string;
 }
 
 interface DragItem {
@@ -18,10 +18,10 @@ interface DragItem {
   id: string;
   type: string;
 }
-const Card: React.FC<CardProps> = ({ index, moveCard, children }) => {
+const DraggableCard: React.FC<CardProps> = ({ index, moveCard, children, type }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [, drop] = useDrop({
-    accept: ItemTypes.CARD,
+    accept: type,
     hover(item: DragItem, monitor: DropTargetMonitor) {
       if (!ref.current) {
         return;
@@ -73,7 +73,7 @@ const Card: React.FC<CardProps> = ({ index, moveCard, children }) => {
   });
 
   const [{ isDragging }, drag] = useDrag({
-    item: { type: ItemTypes.CARD, index },
+    item: { type: type, index },
     collect: (monitor: any) => ({
       isDragging: monitor.isDragging()
     })
@@ -88,4 +88,4 @@ const Card: React.FC<CardProps> = ({ index, moveCard, children }) => {
   );
 };
 
-export default Card;
+export default DraggableCard;

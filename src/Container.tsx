@@ -46,7 +46,7 @@ const Container: React.FC = () => {
 
   const renderCard = (card: { id: number; text: string }, index: number) => {
     return (
-      <DraggableCard key={card.id} index={index} moveCard={moveCard}>
+      <DraggableCard key={card.id} index={index} moveCard={moveCard} type={'card'}>
         <div style={style}>{card.text}</div>
       </DraggableCard>
     );
